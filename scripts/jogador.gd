@@ -4,14 +4,24 @@ extends CharacterBody2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
 func _physics_process(_delta: float) -> void:
-	# Só sobe e desce: um eixo, sem andar para os lados.
-	var eixo := Input.get_axis("up", "down")
-	velocity = Vector2(0, eixo * velocidade)
+	# Pega o vetor combinando as 4 direções (left, right, up, down)
+	var direcao := Input.get_vector("left", "right", "up", "down")
+	velocity = direcao * velocidade
 	move_and_slide()
 
-	if eixo == 0:
+	# Se estiver parado animação para
+	if direcao == Vector2.ZERO:
 		anim.stop()
-	elif eixo > 0:
-		anim.play("baixo")
+		return
+
+	# # aqui peguei da IA vou estudar depois e ve se o prof postou algo parecido
+	if abs(direcao.x) > abs(direcao.y):
+		if direcao.x > 0:
+			anim.play("direita")
+		else:
+			anim.play("esquerda")
 	else:
-		anim.play("cima")
+		if direcao.y > 0:
+			anim.play("baixo")
+		else:
+			anim.play("cima")
