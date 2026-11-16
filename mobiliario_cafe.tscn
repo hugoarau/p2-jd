@@ -1,0 +1,272 @@
+[gd_scene format=3]
+
+; 24 colisoes alinhadas a imagem de 384x224 e a escala (9.447917, 5) do MapaCafe.
+; Sofa, balcao, bancos, mesas, cadeiras e objetos do piso bloqueiam; o tapete fica livre.
+; Corpos em coordenadas do mundo evitam escala desigual nas formas de colisao.
+; metadata/area_textura registra o retangulo original para facilitar ajustes.
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_Sofa"]
+size = Vector2(453.500016, 80.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_MesinhaEsquerda"]
+size = Vector2(75.583336, 70.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_MesinhaDireita"]
+size = Vector2(75.583336, 70.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_Poltrona"]
+size = Vector2(151.166672, 80.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_MesaDeCentro"]
+size = Vector2(122.822921, 60.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_VasoSuperior"]
+size = Vector2(113.375004, 60.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_VasoInferior"]
+size = Vector2(113.375004, 70.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_LivrosEsquerda"]
+size = Vector2(94.479170, 45.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_LivrosInferior"]
+size = Vector2(103.927087, 45.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_CaixaEsquerda"]
+size = Vector2(122.822921, 50.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_Balcao"]
+size = Vector2(907.000032, 75.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_Banqueta1"]
+size = Vector2(75.583336, 50.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_Banqueta2"]
+size = Vector2(75.583336, 50.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_Banqueta3"]
+size = Vector2(75.583336, 50.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_Banqueta4"]
+size = Vector2(75.583336, 50.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_MesaRedonda"]
+size = Vector2(264.541676, 135.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_CadeiraMesaRedondaCima"]
+size = Vector2(94.479170, 80.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_CadeiraMesaRedondaEsquerda"]
+size = Vector2(113.375004, 75.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_CadeiraMesaRedondaDireita"]
+size = Vector2(75.583336, 75.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_MesaDireita"]
+size = Vector2(283.437510, 70.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_CadeiraMesaDireitaCima"]
+size = Vector2(94.479170, 75.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_CadeiraMesaDireitaBaixo"]
+size = Vector2(103.927087, 65.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_Lixeira"]
+size = Vector2(94.479170, 60.000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_CaixaDireita"]
+size = Vector2(132.270838, 60.000000)
+
+[node name="MobiliarioCafe" type="Node2D"]
+
+[node name="Sofa" type="StaticBody2D" parent="."]
+position = Vector2(-17.583304, 520.000000)
+collision_mask = 3
+metadata/area_textura = Rect2(64, 96, 48, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sofa"]
+shape = SubResource("RectangleShape2D_Sofa")
+
+[node name="MesinhaEsquerda" type="StaticBody2D" parent="."]
+position = Vector2(-471.083320, 525.000000)
+collision_mask = 3
+metadata/area_textura = Rect2(36, 98, 8, 14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MesinhaEsquerda"]
+shape = SubResource("RectangleShape2D_MesinhaEsquerda")
+
+[node name="MesinhaDireita" type="StaticBody2D" parent="."]
+position = Vector2(435.916712, 525.000000)
+collision_mask = 3
+metadata/area_textura = Rect2(132, 98, 8, 14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MesinhaDireita"]
+shape = SubResource("RectangleShape2D_MesinhaDireita")
+
+[node name="Poltrona" type="StaticBody2D" parent="."]
+position = Vector2(587.083384, 680.000000)
+collision_mask = 3
+metadata/area_textura = Rect2(144, 128, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Poltrona"]
+shape = SubResource("RectangleShape2D_Poltrona")
+
+[node name="MesaDeCentro" type="StaticBody2D" parent="."]
+position = Vector2(62.723991, 765.000000)
+collision_mask = 3
+metadata/area_textura = Rect2(90, 147, 13, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MesaDeCentro"]
+shape = SubResource("RectangleShape2D_MesaDeCentro")
+
+[node name="VasoSuperior" type="StaticBody2D" parent="."]
+position = Vector2(-622.249992, 445.000000)
+collision_mask = 3
+metadata/area_textura = Rect2(18, 83, 12, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VasoSuperior"]
+shape = SubResource("RectangleShape2D_VasoSuperior")
+
+[node name="VasoInferior" type="StaticBody2D" parent="."]
+position = Vector2(-319.916648, 1005.000000)
+collision_mask = 3
+metadata/area_textura = Rect2(50, 194, 12, 14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VasoInferior"]
+shape = SubResource("RectangleShape2D_VasoInferior")
+
+[node name="LivrosEsquerda" type="StaticBody2D" parent="."]
+position = Vector2(-622.249992, 687.500000)
+collision_mask = 3
+metadata/area_textura = Rect2(19, 133, 10, 9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LivrosEsquerda"]
+shape = SubResource("RectangleShape2D_LivrosEsquerda")
+
+[node name="LivrosInferior" type="StaticBody2D" parent="."]
+position = Vector2(591.807343, 1007.500000)
+collision_mask = 3
+metadata/area_textura = Rect2(147, 197, 11, 9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LivrosInferior"]
+shape = SubResource("RectangleShape2D_LivrosInferior")
+
+[node name="CaixaEsquerda" type="StaticBody2D" parent="."]
+position = Vector2(742.974015, 1010.000000)
+collision_mask = 3
+metadata/area_textura = Rect2(162, 197, 13, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CaixaEsquerda"]
+shape = SubResource("RectangleShape2D_CaixaEsquerda")
+
+[node name="Balcao" type="StaticBody2D" parent="."]
+position = Vector2(1872.000096, 602.500000)
+collision_mask = 3
+metadata/area_textura = Rect2(240, 113, 96, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Balcao"]
+shape = SubResource("RectangleShape2D_Balcao")
+
+[node name="Banqueta1" type="StaticBody2D" parent="."]
+position = Vector2(1645.250088, 695.000000)
+collision_mask = 3
+metadata/area_textura = Rect2(260, 134, 8, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Banqueta1"]
+shape = SubResource("RectangleShape2D_Banqueta1")
+
+[node name="Banqueta2" type="StaticBody2D" parent="."]
+position = Vector2(1796.416760, 695.000000)
+collision_mask = 3
+metadata/area_textura = Rect2(276, 134, 8, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Banqueta2"]
+shape = SubResource("RectangleShape2D_Banqueta2")
+
+[node name="Banqueta3" type="StaticBody2D" parent="."]
+position = Vector2(2098.750104, 695.000000)
+collision_mask = 3
+metadata/area_textura = Rect2(308, 134, 8, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Banqueta3"]
+shape = SubResource("RectangleShape2D_Banqueta3")
+
+[node name="Banqueta4" type="StaticBody2D" parent="."]
+position = Vector2(2249.916776, 695.000000)
+collision_mask = 3
+metadata/area_textura = Rect2(324, 134, 8, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Banqueta4"]
+shape = SubResource("RectangleShape2D_Banqueta4")
+
+[node name="MesaRedonda" type="StaticBody2D" parent="."]
+position = Vector2(1267.333408, 892.500000)
+collision_mask = 3
+metadata/area_textura = Rect2(210, 165, 28, 27)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MesaRedonda"]
+shape = SubResource("RectangleShape2D_MesaRedonda")
+
+[node name="CadeiraMesaRedondaCima" type="StaticBody2D" parent="."]
+position = Vector2(1276.781325, 765.000000)
+collision_mask = 3
+metadata/area_textura = Rect2(220, 145, 10, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CadeiraMesaRedondaCima"]
+shape = SubResource("RectangleShape2D_CadeiraMesaRedondaCima")
+
+[node name="CadeiraMesaRedondaEsquerda" type="StaticBody2D" parent="."]
+position = Vector2(1040.583400, 922.500000)
+collision_mask = 3
+metadata/area_textura = Rect2(194, 177, 12, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CadeiraMesaRedondaEsquerda"]
+shape = SubResource("RectangleShape2D_CadeiraMesaRedondaEsquerda")
+
+[node name="CadeiraMesaRedondaDireita" type="StaticBody2D" parent="."]
+position = Vector2(1531.875084, 922.500000)
+collision_mask = 3
+metadata/area_textura = Rect2(248, 177, 8, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CadeiraMesaRedondaDireita"]
+shape = SubResource("RectangleShape2D_CadeiraMesaRedondaDireita")
+
+[node name="MesaDireita" type="StaticBody2D" parent="."]
+position = Vector2(2183.781357, 925.000000)
+collision_mask = 3
+metadata/area_textura = Rect2(306, 178, 30, 14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MesaDireita"]
+shape = SubResource("RectangleShape2D_MesaDireita")
+
+[node name="CadeiraMesaDireitaCima" type="StaticBody2D" parent="."]
+position = Vector2(2183.781357, 847.500000)
+collision_mask = 3
+metadata/area_textura = Rect2(316, 162, 10, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CadeiraMesaDireitaCima"]
+shape = SubResource("RectangleShape2D_CadeiraMesaDireitaCima")
+
+[node name="CadeiraMesaDireitaBaixo" type="StaticBody2D" parent="."]
+position = Vector2(2179.057399, 1007.500000)
+collision_mask = 3
+metadata/area_textura = Rect2(315, 195, 11, 13)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CadeiraMesaDireitaBaixo"]
+shape = SubResource("RectangleShape2D_CadeiraMesaDireitaBaixo")
+
+[node name="Lixeira" type="StaticBody2D" parent="."]
+position = Vector2(2561.698037, 855.000000)
+collision_mask = 3
+metadata/area_textura = Rect2(356, 165, 10, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lixeira"]
+shape = SubResource("RectangleShape2D_Lixeira")
+
+[node name="CaixaDireita" type="StaticBody2D" parent="."]
+position = Vector2(2561.698037, 1010.000000)
+collision_mask = 3
+metadata/area_textura = Rect2(354, 196, 14, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CaixaDireita"]
+shape = SubResource("RectangleShape2D_CaixaDireita")

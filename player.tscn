@@ -4,11 +4,14 @@
 [ext_resource type="Script" uid="uid://cvrsg472nap8k" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://0qvfdtvtf4c7" path="res://arma.tscn" id="3_i3pqv"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0i88t"]
-radius = 30.479504
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v1xj4"]
+radius = 43.0
+height = 104.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ckb4l"]
-radius = 40.012497
+; Sensor com 6 pixels de margem para detectar contato parado nas paredes.
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dano"]
+radius = 49.0
+height = 116.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ckb4l"]
 bg_color = Color(0.15294118, 0.16862746, 0.1882353, 1)
@@ -32,10 +35,8 @@ unique_name_in_owner = true
 scale = Vector2(1.0000001, 1.0000001)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1971052252]
-position = Vector2(9.536743e-07, 9.536743e-07)
-shape = SubResource("CircleShape2D_0i88t")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1875208185]
+position = Vector2(-1.999999, -44)
+shape = SubResource("CapsuleShape2D_v1xj4")
 
 [node name="Arma" parent="." unique_id=1383573667 instance=ExtResource("3_i3pqv")]
 position = Vector2(0, -38)
@@ -45,8 +46,10 @@ unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 2
 
+; Alinhado ao corpo: o sensor antigo ficava so nos pes e nao detectava todas as direcoes.
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dano" unique_id=1591373625]
-shape = SubResource("CircleShape2D_ckb4l")
+position = Vector2(-2, -44)
+shape = SubResource("CapsuleShape2D_dano")
 debug_color = Color(0.7495663, 0.42632657, 0.46477962, 0.41960785)
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1764569500]
@@ -59,3 +62,10 @@ theme_override_styles/background = SubResource("StyleBoxFlat_ckb4l")
 theme_override_styles/fill = SubResource("StyleBoxFlat_0i88t")
 value = 100.0
 show_percentage = false
+
+; Unica camera de jogo; player.gd calcula os limites reais da imagem do mapa.
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1097877197]
+limit_left = -847
+limit_top = 2
+limit_right = 2777
+limit_bottom = 1118

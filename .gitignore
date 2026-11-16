@@ -1,3 +1,10 @@
-﻿.godot/
+# Cache e diagnosticos locais do Godot.
+.godot/
 .import/
 .env
+
+# Backups locais das correcoes; nao fazem parte do jogo publicado.
+.camera-backup-*/
+.mapa-backup-*/
+.rodada-backup-*/
+.recuperacao-*/

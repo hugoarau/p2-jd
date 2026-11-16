@@ -1,0 +1,6 @@
+CORNER CAFE & BOOKSHOP - LICENCE
+After download you may use, modify and include these sprites and tilesets in any number of commercial or non-commercial
+games, apps and videos, compiled or as part of your project's source. Credit is appreciated, not required.
+You may not resell, redistribute or publish them (modified or not) on their own or in another asset pack.
+Made with procedural generation code written with AI assistance; all art is drawn by that code.
+Provided as is, without warranty.

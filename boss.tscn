@@ -1,0 +1,62 @@
+[gd_scene format=3]
+
+; Chefe reutiliza a xicara ampliada em 2.2 vezes, com 10 de vida em boss.gd.
+; Camada 2 permite que os tiros e o sensor de dano reconhecam o chefe.
+
+[ext_resource type="Script" path="res://boss.gd" id="1_boss"]
+[ext_resource type="PackedScene" path="res://characters/slime/slime.tscn" id="2_xicara"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_boss"]
+radius = 78.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fundo"]
+bg_color = Color(0.12, 0.08, 0.06, 0.95)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_left = 6
+corner_radius_bottom_right = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vida"]
+bg_color = Color(0.85, 0.22, 0.12, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_left = 6
+corner_radius_bottom_right = 6
+
+[node name="Boss" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_boss")
+
+[node name="Slime" parent="." instance=ExtResource("2_xicara")]
+unique_name_in_owner = true
+position = Vector2(0, -35)
+scale = Vector2(2.2, 2.2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -38)
+shape = SubResource("CircleShape2D_boss")
+
+[node name="NomeBoss" type="Label" parent="."]
+offset_left = -150.0
+offset_top = -215.0
+offset_right = 150.0
+offset_bottom = -180.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 28
+text = "Xícara gigante"
+horizontal_alignment = 1
+
+[node name="VidaBoss" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -130.0
+offset_top = -180.0
+offset_right = 130.0
+offset_bottom = -154.0
+theme_override_styles/background = SubResource("StyleBoxFlat_fundo")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vida")
+max_value = 10.0
+value = 10.0
+show_percentage = false

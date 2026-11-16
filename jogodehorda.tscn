@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bh3vnhckw8w7f" path="res://jogodehorda.gd" id="1_0ke6j"]
 [ext_resource type="PackedScene" uid="uid://cabeu5wjs5qcn" path="res://player.tscn" id="1_wofhg"]
-[ext_resource type="PackedScene" uid="uid://dr06vhe6nv1pb" path="res://árvore.tscn" id="2_3ob3j"]
+[ext_resource type="Texture2D" uid="uid://btwrinu0yi28k" path="res://assets/CornerCafe/CornerCafe/scene.png" id="2_0ke6j"]
+[ext_resource type="PackedScene" path="res://mobiliario_cafe.tscn" id="4_mobiliario"]
 
 [sub_resource type="Curve2D" id="Curve2D_8vse3"]
 _data = {
@@ -10,54 +11,66 @@ _data = {
 }
 point_count = 9
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckb4l"]
+size = Vector2(3630, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3jguv"]
+size = Vector2(3630, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_43kjg"]
+size = Vector2(57, 720)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exfux"]
+size = Vector2(55, 720)
+
 [node name="Jogo" type="Node2D" unique_id=2021251697]
 y_sort_enabled = true
 script = ExtResource("1_0ke6j")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=795321020]
-layer = -30
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=254210648]
-offset_top = 3.0
-offset_right = 1914.0
-offset_bottom = 1082.0
 
 [node name="Player" parent="." unique_id=1716734201 instance=ExtResource("1_wofhg")]
 position = Vector2(915, 441)
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="Path2D" type="Path2D" parent="Player" unique_id=120380056]
-position = Vector2(-915, -441)
+position = Vector2(-1607.699, -374.77148)
+scale = Vector2(1.7698375, 0.98835534)
 curve = SubResource("Curve2D_8vse3")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D" unique_id=1710143511]
 unique_name_in_owner = true
 position = Vector2(-116, -238)
 
-[node name="árvore" parent="." unique_id=855273162 instance=ExtResource("2_3ob3j")]
-position = Vector2(186, 330)
-
-[node name="árvore2" parent="." unique_id=108801569 instance=ExtResource("2_3ob3j")]
-position = Vector2(261, 784)
-
-[node name="árvore3" parent="." unique_id=850181706 instance=ExtResource("2_3ob3j")]
-position = Vector2(1522, 662)
-
-[node name="árvore4" parent="." unique_id=931374849 instance=ExtResource("2_3ob3j")]
-position = Vector2(1401, 322)
-
-[node name="árvore5" parent="." unique_id=92846192 instance=ExtResource("2_3ob3j")]
-position = Vector2(896, 175)
-
-[node name="árvore6" parent="." unique_id=1343770789 instance=ExtResource("2_3ob3j")]
-position = Vector2(933, 756)
-
 [node name="Timer" type="Timer" parent="." unique_id=893072805]
-wait_time = 0.3
 autostart = true
 
+; Conta 60 segundos e chama o chefe uma unica vez ao terminar.
+[node name="TempoRodada" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+autostart = true
+
+; Contador fixo na tela, independente da camera e do movimento do jogador.
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="TempoLabel" type="Label" parent="HUD"]
+unique_name_in_owner = true
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 22.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.94, 0.76, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 42
+text = "Chefe em: 60 s"
+horizontal_alignment = 1
+
+; Tela final compartilhada: o script escolhe a mensagem de vitoria ou morte.
 [node name="FimDeJogo" type="CanvasLayer" parent="." unique_id=2080925077]
 unique_name_in_owner = true
+layer = 2
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="FimDeJogo" unique_id=1920244686]
@@ -75,14 +88,45 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -74.5
-offset_top = -11.5
-offset_right = 74.5
-offset_bottom = 11.5
+offset_left = -700.0
+offset_top = -90.0
+offset_right = 700.0
+offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 130
-text = "Fim De Jogo Newba"
+theme_override_font_sizes/font_size = 100
+text = "Você morreu newba"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MapaCafe" type="Sprite2D" parent="." unique_id=2019395865]
+z_index = -10
+texture_filter = 1
+position = Vector2(965, 560)
+scale = Vector2(9.447917, 5)
+texture = ExtResource("2_0ke6j")
+
+; As seis arvores foram retiradas; os obstaculos agora acompanham os moveis desenhados.
+[node name="MobiliarioCafe" parent="." instance=ExtResource("4_mobiliario")]
+
+[node name="LimiteMapa" type="StaticBody2D" parent="." unique_id=106472777]
+
+[node name="ParedeSuperior" type="CollisionShape2D" parent="LimiteMapa" unique_id=1788206836]
+position = Vector2(965, 380)
+shape = SubResource("RectangleShape2D_ckb4l")
+
+[node name="ParedeInferior" type="CollisionShape2D" parent="LimiteMapa" unique_id=931172338]
+position = Vector2(965, 1105)
+shape = SubResource("RectangleShape2D_3jguv")
+
+[node name="ParedeEsquerda" type="CollisionShape2D" parent="LimiteMapa" unique_id=516051631]
+position = Vector2(-820.5, 740)
+shape = SubResource("RectangleShape2D_43kjg")
+
+[node name="ParedeDireita" type="CollisionShape2D" parent="LimiteMapa" unique_id=470704853]
+position = Vector2(2751.5, 740)
+shape = SubResource("RectangleShape2D_exfux")
 
 [connection signal="vida_zerada" from="Player" to="." method="_on_player_vida_zerada"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TempoRodada" to="." method="_on_tempo_rodada_timeout"]
