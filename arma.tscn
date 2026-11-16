@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://0qvfdtvtf4c7"]
+
+[ext_resource type="Script" uid="uid://cs7ylghiufoi2" path="res://arma.gd" id="1_uya3a"]
+[ext_resource type="Texture2D" uid="uid://b4vn1qegcltrq" path="res://pistol/pistol.png" id="1_vp40w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0i88t"]
+radius = 285.34366
+
+[node name="Arma" type="Area2D" unique_id=1383573667]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_uya3a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1663189677]
+shape = SubResource("CircleShape2D_0i88t")
+
+[node name="ArmaDaMira" type="Marker2D" parent="." unique_id=1098863486]
+rotation = 0.010568455
+
+[node name="Pistol" type="Sprite2D" parent="ArmaDaMira" unique_id=642348062]
+position = Vector2(119.89703, -10.376232)
+texture = ExtResource("1_vp40w")
+
+[node name="PontoDeTiro" type="Marker2D" parent="ArmaDaMira/Pistol" unique_id=268508469]
+unique_name_in_owner = true
+position = Vector2(24.58189, -10.151805)
+
+[node name="Timer" type="Timer" parent="." unique_id=1514191017]
+wait_time = 0.3
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

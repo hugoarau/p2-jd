@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://cabeu5wjs5qcn"]
+
+[ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://characters/happy_boo/happy_boo.tscn" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://cvrsg472nap8k" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="PackedScene" uid="uid://0qvfdtvtf4c7" path="res://arma.tscn" id="3_i3pqv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0i88t"]
+radius = 30.479504
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ckb4l"]
+radius = 40.012497
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ckb4l"]
+bg_color = Color(0.15294118, 0.16862746, 0.1882353, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0i88t"]
+bg_color = Color(7.70092e-07, 0.7225198, 0.28159755, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Player" type="CharacterBody2D" unique_id=1716734201]
+script = ExtResource("1_onrkg")
+
+[node name="HappyBoo" parent="." unique_id=1091727253 instance=ExtResource("1_4flbx")]
+unique_name_in_owner = true
+scale = Vector2(1.0000001, 1.0000001)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1971052252]
+position = Vector2(9.536743e-07, 9.536743e-07)
+shape = SubResource("CircleShape2D_0i88t")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1875208185]
+
+[node name="Arma" parent="." unique_id=1383573667 instance=ExtResource("3_i3pqv")]
+position = Vector2(0, -38)
+
+[node name="Dano" type="Area2D" parent="." unique_id=358823501]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dano" unique_id=1591373625]
+shape = SubResource("CircleShape2D_ckb4l")
+debug_color = Color(0.7495663, 0.42632657, 0.46477962, 0.41960785)
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1764569500]
+unique_name_in_owner = true
+offset_left = -111.0
+offset_top = -143.0
+offset_right = 111.0
+offset_bottom = -116.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ckb4l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0i88t")
+value = 100.0
+show_percentage = false

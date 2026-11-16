@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://dw6tfhprnmqdi"]
+
+[ext_resource type="Script" uid="uid://bh3vnhckw8w7f" path="res://jogodehorda.gd" id="1_0ke6j"]
+[ext_resource type="PackedScene" uid="uid://cabeu5wjs5qcn" path="res://player.tscn" id="1_wofhg"]
+[ext_resource type="PackedScene" uid="uid://dr06vhe6nv1pb" path="res://árvore.tscn" id="2_3ob3j"]
+
+[sub_resource type="Curve2D" id="Curve2D_8vse3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -116, -238, 0, 0, 0, 0, 2039, -238, 0, 0, 0, 0, 2039, -238, 0, 0, 0, 0, 2039, 1136, 0, 0, 0, 0, 2039, 1136, 0, 0, 0, 0, -116, 1136, 0, 0, 0, 0, -116, 1136, 0, 0, 0, 0, -116, -238, 0, 0, 0, 0, -116, -238)
+}
+point_count = 9
+
+[node name="Jogo" type="Node2D" unique_id=2021251697]
+y_sort_enabled = true
+script = ExtResource("1_0ke6j")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=795321020]
+layer = -30
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=254210648]
+offset_top = 3.0
+offset_right = 1914.0
+offset_bottom = 1082.0
+
+[node name="Player" parent="." unique_id=1716734201 instance=ExtResource("1_wofhg")]
+position = Vector2(915, 441)
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="Path2D" type="Path2D" parent="Player" unique_id=120380056]
+position = Vector2(-915, -441)
+curve = SubResource("Curve2D_8vse3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D" unique_id=1710143511]
+unique_name_in_owner = true
+position = Vector2(-116, -238)
+
+[node name="árvore" parent="." unique_id=855273162 instance=ExtResource("2_3ob3j")]
+position = Vector2(186, 330)
+
+[node name="árvore2" parent="." unique_id=108801569 instance=ExtResource("2_3ob3j")]
+position = Vector2(261, 784)
+
+[node name="árvore3" parent="." unique_id=850181706 instance=ExtResource("2_3ob3j")]
+position = Vector2(1522, 662)
+
+[node name="árvore4" parent="." unique_id=931374849 instance=ExtResource("2_3ob3j")]
+position = Vector2(1401, 322)
+
+[node name="árvore5" parent="." unique_id=92846192 instance=ExtResource("2_3ob3j")]
+position = Vector2(896, 175)
+
+[node name="árvore6" parent="." unique_id=1343770789 instance=ExtResource("2_3ob3j")]
+position = Vector2(933, 756)
+
+[node name="Timer" type="Timer" parent="." unique_id=893072805]
+wait_time = 0.3
+autostart = true
+
+[node name="FimDeJogo" type="CanvasLayer" parent="." unique_id=2080925077]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="FimDeJogo" unique_id=1920244686]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5137255)
+
+[node name="Label" type="Label" parent="FimDeJogo/ColorRect" unique_id=1607152267]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = -11.5
+offset_right = 74.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 130
+text = "Fim De Jogo Newba"
+
+[connection signal="vida_zerada" from="Player" to="." method="_on_player_vida_zerada"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
