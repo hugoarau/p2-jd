@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bh3vnhckw8w7f" path="res://jogodehorda.gd" id="1_0ke6j"]
 [ext_resource type="PackedScene" uid="uid://cabeu5wjs5qcn" path="res://player.tscn" id="1_wofhg"]
 [ext_resource type="Texture2D" uid="uid://btwrinu0yi28k" path="res://assets/CornerCafe/CornerCafe/scene.png" id="2_0ke6j"]
-[ext_resource type="PackedScene" path="res://mobiliario_cafe.tscn" id="4_mobiliario"]
+[ext_resource type="PackedScene" uid="uid://f2q3ctmb1kvf" path="res://mobiliario_cafe.tscn" id="4_mobiliario"]
 
 [sub_resource type="Curve2D" id="Curve2D_8vse3"]
 _data = {
@@ -41,18 +41,17 @@ unique_name_in_owner = true
 position = Vector2(-116, -238)
 
 [node name="Timer" type="Timer" parent="." unique_id=893072805]
+wait_time = 0.5
 autostart = true
 
-; Conta 60 segundos e chama o chefe uma unica vez ao terminar.
-[node name="TempoRodada" type="Timer" parent="."]
+[node name="TempoRodada" type="Timer" parent="." unique_id=1536553709]
 wait_time = 60.0
 one_shot = true
 autostart = true
 
-; Contador fixo na tela, independente da camera e do movimento do jogador.
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1512101261]
 
-[node name="TempoLabel" type="Label" parent="HUD"]
+[node name="TempoLabel" type="Label" parent="HUD" unique_id=1308409313]
 unique_name_in_owner = true
 anchors_preset = 10
 anchor_right = 1.0
@@ -67,7 +66,6 @@ theme_override_font_sizes/font_size = 42
 text = "Chefe em: 60 s"
 horizontal_alignment = 1
 
-; Tela final compartilhada: o script escolhe a mensagem de vitoria ou morte.
 [node name="FimDeJogo" type="CanvasLayer" parent="." unique_id=2080925077]
 unique_name_in_owner = true
 layer = 2
@@ -106,8 +104,7 @@ position = Vector2(965, 560)
 scale = Vector2(9.447917, 5)
 texture = ExtResource("2_0ke6j")
 
-; As seis arvores foram retiradas; os obstaculos agora acompanham os moveis desenhados.
-[node name="MobiliarioCafe" parent="." instance=ExtResource("4_mobiliario")]
+[node name="MobiliarioCafe" parent="." unique_id=813386250 instance=ExtResource("4_mobiliario")]
 
 [node name="LimiteMapa" type="StaticBody2D" parent="." unique_id=106472777]
 

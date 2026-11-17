@@ -66,7 +66,14 @@ func _physics_process(_delta):
 	const DANO_POR_SEGUNDO = 5.0
 	var overlapping_inimigo = %Dano.get_overlapping_bodies()
 	if overlapping_inimigo.size() > 0:
-		vida = maxf(0.0, vida - DANO_POR_SEGUNDO * overlapping_inimigo.size() * _delta)
-		%ProgressBar.value = vida 
-		if vida <= 0.0:
-			vida_zerada.emit()
+		receber_dano(DANO_POR_SEGUNDO * overlapping_inimigo.size() * _delta)
+
+
+func receber_dano(quantidade: float) -> void:
+	# [CODEX] Contato e jatos de cafe usam a mesma regra de vida/barra/morte, sem sinais duplicados.
+	if vida <= 0.0 or quantidade <= 0.0:
+		return
+	vida = maxf(0.0, vida - quantidade)
+	%ProgressBar.value = vida
+	if vida <= 0.0:
+		vida_zerada.emit()

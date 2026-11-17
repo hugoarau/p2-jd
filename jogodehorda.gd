@@ -11,6 +11,17 @@ var _tentativa_boss := 0.0
 
 
 func _ready() -> void:
+	# [CODEX] Uma malha de rotas compartilhada atende a horda e o chefe, com folga para cada corpo.
+	var navegacao = preload("res://navegacao_inimigos.gd").new()
+	navegacao.name = "NavegacaoInimigos"
+	add_child(navegacao)
+	# [CODEX] Prepara os dois tamanhos em pequenos lotes durante a rodada, antes do chefe aparecer.
+	var raios: Array[int] = []
+	for cena in [preload("res://inimigo.tscn"), preload("res://boss.tscn")]:
+		var modelo: CharacterBody2D = cena.instantiate()
+		raios.append(ceili(navegacao.raio_do_corpo(modelo)))
+		modelo.free()
+	navegacao.preparar_grades.call_deferred(raios)
 	# Força tela cheia ao jogar; testes sem janela continuam funcionando em headless.
 	if DisplayServer.get_name() != "headless":
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
@@ -86,6 +97,16 @@ func _on_tempo_rodada_timeout() -> void:
 	fase = Fase.CHEFE
 	$Timer.stop()
 	$TempoRodada.stop()
+	# [CODEX] O confronto e so com o chefe: some com a horda sem gerar fumaca ou efeitos de morte.
+	for inimigo in get_tree().get_nodes_in_group("inimigos"):
+		if not is_ancestor_of(inimigo):
+			continue
+		inimigo.process_mode = Node.PROCESS_MODE_DISABLED
+		inimigo.hide()
+		inimigo.collision_layer = 0
+		inimigo.collision_mask = 0
+		inimigo.remove_from_group("inimigos")
+		inimigo.queue_free()
 	%TempoLabel.text = "Derrote a xícara gigante!"
 	_tentar_spawn_boss()
 
@@ -137,7 +158,7 @@ func _tentar_spawn_boss() -> void:
 
 
 func _on_boss_derrotado() -> void:
-	_terminar_jogo("Fim de jogo")
+	_terminar_jogo("Você VENCEU! Fim de jogo")
 
 
 func _terminar_jogo(mensagem: String) -> void:

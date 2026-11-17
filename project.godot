@@ -83,12 +83,10 @@ config/icon="res://icon.png"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-; Tela cheia nativa, sem limitar o F5 a previa embutida do editor.
 window/size/mode=3
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
-; Preenche monitores fora de 16:9 sem barras pretas; player.gd ajusta o zoom ao mapa.
 window/stretch/aspect="expand"
 
 [dotnet]

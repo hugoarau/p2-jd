@@ -8,7 +8,6 @@
 radius = 43.0
 height = 104.0
 
-; Sensor com 6 pixels de margem para detectar contato parado nas paredes.
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dano"]
 radius = 49.0
 height = 116.0
@@ -46,7 +45,6 @@ unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 2
 
-; Alinhado ao corpo: o sensor antigo ficava so nos pes e nao detectava todas as direcoes.
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dano" unique_id=1591373625]
 position = Vector2(-2, -44)
 shape = SubResource("CapsuleShape2D_dano")
@@ -63,7 +61,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_0i88t")
 value = 100.0
 show_percentage = false
 
-; Unica camera de jogo; player.gd calcula os limites reais da imagem do mapa.
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1097877197]
 limit_left = -847
 limit_top = 2

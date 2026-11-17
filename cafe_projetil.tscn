@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+; [CODEX] Projétil do chefe usa corpo com varredura, máscara 1 e nenhuma camada ofensiva de contato.
+[ext_resource type="Script" path="res://cafe_projetil.gd" id="1_cafe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gota"]
+radius = 9.0
+
+[node name="CafeProjetil" type="CharacterBody2D"]
+z_index = 2
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("1_cafe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gota")
